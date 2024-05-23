@@ -22,7 +22,7 @@ const UserSchema = new mongoose_1.Schema({
         enum: ['USER_ROLE', 'ADMIN_ROLE'],
         default: 'USER_ROLE'
     },
-    state: {
+    status: {
         type: Boolean,
         default: true
     },

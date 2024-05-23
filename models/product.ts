@@ -25,3 +25,6 @@ const ProductSchema = new Schema({
         type: String
     }
 });
+
+
+export const Protuct = model('Product', ProductSchema)

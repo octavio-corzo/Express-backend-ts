@@ -1,7 +1,8 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import { deleteUser, getUsers, patchUser, postUser } from "../controllers/user";
-const router = Router();
+
+const router: Router = Router();
 
 router.get('/', getUsers);
 
