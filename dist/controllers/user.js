@@ -8,15 +8,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postUsers = exports.getUsers = void 0;
-const express_1 = require("express");
+exports.deleteUser = exports.patchUser = exports.postUser = exports.getUsers = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const user_1 = require("../models/user");
-const getUsers = (req = express_1.request, res = express_1.response) => __awaiter(void 0, void 0, void 0, function* () {
+const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = { state: true };
     const users = yield Promise.all([
         user_1.User.countDocuments(query),
@@ -28,7 +38,7 @@ const getUsers = (req = express_1.request, res = express_1.response) => __awaite
     });
 });
 exports.getUsers = getUsers;
-const postUsers = (req = express_1.request, res = express_1.response) => __awaiter(void 0, void 0, void 0, function* () {
+const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, email, password, role } = req.body;
     const user = new user_1.User({ name, email, password, role });
     // Encrypt password
@@ -41,4 +51,27 @@ const postUsers = (req = express_1.request, res = express_1.response) => __await
         user
     });
 });
-exports.postUsers = postUsers;
+exports.postUser = postUser;
+const patchUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const _a = req.body, { _id, password, google, email } = _a, rest = __rest(_a, ["_id", "password", "google", "email"]);
+    if (password) {
+        const salt = bcryptjs_1.default.genSaltSync();
+        rest.password = bcryptjs_1.default.hashSync(password, salt);
+    }
+    const user = yield user_1.User.findByIdAndUpdate(id, rest, { new: true });
+    res.json({
+        msg: 'putUsers',
+        user
+    });
+});
+exports.patchUser = patchUser;
+const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const user = yield user_1.User.findByIdAndDelete(id, { state: false });
+    res.json({
+        msg: 'deleteUsers',
+        user
+    });
+});
+exports.deleteUser = deleteUser;

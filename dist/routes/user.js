@@ -9,5 +9,11 @@ router.post('/', [
     (0, express_validator_1.check)('name', 'Name is required').not().isEmpty(),
     (0, express_validator_1.check)('password', 'Password is required').not().isEmpty(),
     (0, express_validator_1.check)('email', 'Email is required').isEmail(),
-], user_1.postUsers);
+], user_1.postUser);
+router.patch('/:id', [
+    (0, express_validator_1.check)('id', 'No es un ID válido').isMongoId(),
+    (0, express_validator_1.check)('password', 'Password is required').not().isEmpty(),
+    (0, express_validator_1.check)('email', 'Email is required').isEmail(),
+], user_1.patchUser);
+router.delete('/:id', user_1.deleteUser);
 module.exports = router;
