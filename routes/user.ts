@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { deleteUser, getUsers, patchUser, postUser } from "../controllers/user";
+import { deleteUser, getUser, getUsers, patchUser, postUser } from "../controllers/user";
 import { validateJWT } from "../middlewares/validate-jwt";
 
 const router: Router = Router();
@@ -8,6 +8,10 @@ const router: Router = Router();
 router.get('/', [
     validateJWT,
 ],getUsers);
+
+router.get('/:id', [
+    validateJWT
+], getUser);
 
 router.post('/', [
     validateJWT,

@@ -23,7 +23,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUser = exports.patchUser = exports.postUser = exports.getUsers = void 0;
+exports.deleteUser = exports.patchUser = exports.postUser = exports.getUser = exports.getUsers = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const user_1 = require("../models/user");
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -38,6 +38,15 @@ const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 exports.getUsers = getUsers;
+const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const user = yield user_1.User.findById(id);
+    return res.json({
+        msg: "getUser",
+        user
+    });
+});
+exports.getUser = getUser;
 const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, email, password, role } = req.body;
     const user = new user_1.User({ name, email, password, role });
