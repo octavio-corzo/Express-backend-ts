@@ -1,24 +1,24 @@
-import { response, request, Response, Request } from "express";
+import { Response, Request } from "express";
 import bcrypt from 'bcryptjs';
 import {User} from '../models/user';
 
-export const getUsers = async (req: Request, res: Response): Promise<void> => {
+export const getUsers = async (req: Request, res: Response): Promise<Response> => {
     
-    const query = { state: true };
+    const query = { satus: true };
 
     const users = await Promise.all([
         User.countDocuments(query),
         User.find(query)
     ]);
 
-    res.json({
+    return res.json({
         msg: 'getUsers',
         users
     });
 }
 
 
-export const postUser = async (req: Request, res: Response): Promise<void> => {
+export const postUser = async (req: Request, res: Response): Promise<Response> => {
     
     const { name, email, password, role } = req.body;
     const user = new User({ name, email, password, role });
@@ -30,7 +30,7 @@ export const postUser = async (req: Request, res: Response): Promise<void> => {
     // Save in DB
     await user.save();
 
-    res.json({
+    return res.json({
         msg: 'postUsers',
         user
     });
@@ -54,12 +54,12 @@ export const patchUser = async (req: Request, res: Response): Promise<void> => {
     });
 }
 
-export const deleteUser = async (req: Request, res: Response): Promise<void> => {
+export const deleteUser = async (req: Request, res: Response): Promise<Response> => {
     
     const {id} = req.params;
     const user = await User.findByIdAndDelete(id, {state: false});
 
-    res.json({
+    return res.json({
         msg: 'deleteUsers',
         user
     });

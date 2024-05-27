@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Receipt = void 0;
 const mongoose_1 = require("mongoose");
 const ReceiptSchema = new mongoose_1.Schema({
     name: {
@@ -12,22 +13,22 @@ const ReceiptSchema = new mongoose_1.Schema({
     },
     admin: {
         type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'Usuario',
+        ref: 'User',
         required: true
     },
     client: {
         type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'Usuario',
+        ref: 'User',
         required: true
     },
     products: [{
             type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'Producto',
+            ref: 'Usuer',
             required: true
         }],
     shoppingCart: {
         type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'Carrito',
+        ref: 'User',
         required: true
     },
     total: {
@@ -35,4 +36,4 @@ const ReceiptSchema = new mongoose_1.Schema({
         default: 0
     }
 });
-module.exports = (0, mongoose_1.model)('Receipt ', ReceiptSchema);
+exports.Receipt = (0, mongoose_1.model)('Receipt', ReceiptSchema);

@@ -27,12 +27,12 @@ exports.deleteUser = exports.patchUser = exports.postUser = exports.getUsers = v
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const user_1 = require("../models/user");
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const query = { state: true };
+    const query = { satus: true };
     const users = yield Promise.all([
         user_1.User.countDocuments(query),
         user_1.User.find(query)
     ]);
-    res.json({
+    return res.json({
         msg: 'getUsers',
         users
     });
@@ -46,7 +46,7 @@ const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     user.password = bcryptjs_1.default.hashSync(password, salt);
     // Save in DB
     yield user.save();
-    res.json({
+    return res.json({
         msg: 'postUsers',
         user
     });
@@ -69,7 +69,7 @@ exports.patchUser = patchUser;
 const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const user = yield user_1.User.findByIdAndDelete(id, { state: false });
-    res.json({
+    return res.json({
         msg: 'deleteUsers',
         user
     });

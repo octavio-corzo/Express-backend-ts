@@ -6,7 +6,10 @@ export class Server {
     private app: express.Application;
     private port: string;
     private apiPaths = {
-        users: '/api/users'
+        users: '/api/users',
+        auth: '/api/auth',
+        category: '/api/category',
+        receipt: '/api/receipt',
     };
 
     constructor() {
@@ -40,6 +43,9 @@ export class Server {
 
     routes() {
         this.app.use(this.apiPaths.users, require('../routes/user'));
+        this.app.use(this.apiPaths.auth, require('../routes/auth'));
+        this.app.use(this.apiPaths.category, require('../routes/category'));
+        this.app.use(this.apiPaths.receipt, require('../routes/receipt'));
     }
 
     listen() {

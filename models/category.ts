@@ -16,10 +16,10 @@ const CategorySchema = new Schema({
         required: true
     },
     products: [{
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: 'Product',
         required: true
     }]
 });
 
-module.exports = model('Category', CategorySchema);
+export const Category = model('Category', CategorySchema);

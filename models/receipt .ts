@@ -11,22 +11,22 @@ const ReceiptSchema = new Schema({
     },
     admin: {
         type: Schema.Types.ObjectId,
-        ref: 'Usuario',
+        ref: 'User',
         required: true
     },
     client: {
         type: Schema.Types.ObjectId,
-        ref: 'Usuario',
+        ref: 'User',
         required: true
     },
     products: [{
         type: Schema.Types.ObjectId,
-        ref: 'Producto',
+        ref: 'Usuer',
         required: true
     }],
     shoppingCart: {
         type: Schema.Types.ObjectId,
-        ref: 'Carrito',
+        ref: 'User',
         required: true
     },
     total: {
@@ -36,4 +36,4 @@ const ReceiptSchema = new Schema({
 });
 
 
-module.exports = model('Receipt ', ReceiptSchema);
+export const Receipt = model('Receipt', ReceiptSchema);
