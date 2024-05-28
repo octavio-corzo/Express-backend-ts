@@ -6,7 +6,7 @@ const receipt_1 = require("../controllers/receipt");
 const validate_jwt_1 = require("../middlewares/validate-jwt");
 const router = (0, express_1.Router)();
 router.get('/', [
-    validate_jwt_1.validateJWT,
+// validateJWT,
 ], receipt_1.getReceipts);
 router.post('/', [
     validate_jwt_1.validateJWT,

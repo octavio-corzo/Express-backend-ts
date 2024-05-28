@@ -27,7 +27,7 @@ exports.deleteUser = exports.patchUser = exports.postUser = exports.getUser = ex
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const user_1 = require("../models/user");
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const query = { satus: true };
+    const query = { status: true };
     const users = yield Promise.all([
         user_1.User.countDocuments(query),
         user_1.User.find(query)

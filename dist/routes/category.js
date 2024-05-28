@@ -6,7 +6,7 @@ const category_1 = require("../controllers/category");
 const validate_jwt_1 = require("../middlewares/validate-jwt");
 const router = (0, express_1.Router)();
 router.get('/', [
-    validate_jwt_1.validateJWT,
+// validateJWT,
 ], category_1.getCategories);
 router.post('/', [
     validate_jwt_1.validateJWT,

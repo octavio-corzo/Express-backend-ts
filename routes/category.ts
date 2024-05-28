@@ -6,7 +6,7 @@ import { validateJWT } from "../middlewares/validate-jwt";
 const router: Router = Router();
 
 router.get('/', [
-    validateJWT,
+    // validateJWT,
 ], getCategories);
 
 router.post('/', [

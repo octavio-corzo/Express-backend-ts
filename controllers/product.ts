@@ -4,9 +4,9 @@ import { Category } from '../models/category';
 
 
 export const getProducts = async (req: Request, res: Response): Promise<Response> => {
-    const query = {aviable: true};
+    const query = {available: true};
 
-    const products = Promise.all([
+    const products = await Promise.all([
         Product.countDocuments(query),
         Product.find(query),
     ]);

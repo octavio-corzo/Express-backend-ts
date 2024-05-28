@@ -1,18 +1,19 @@
 import { Router } from "express";
 import { check} from "express-validator";
-import { getProducts, patchProduct } from "../controllers/product";
-import { postCategory } from "../controllers/category";
+import { getProducts, patchProduct, postProduct } from "../controllers/product";
 import { validateJWT } from "../middlewares/validate-jwt";
 
 const router: Router = Router();
 
 router.get('/', [
-    validateJWT,
+    // validateJWT,
 ],getProducts);
 
 router.post('/', [  
-
-], postCategory);
+    check('name', 'Product name is required').isEmpty(),
+    check('price', 'Product price is required').isEmpty(),
+    check('category', 'Product Category is required').isEmpty(),
+], postProduct);
 
 router.patch('/', [
 

@@ -22,6 +22,7 @@ class Server {
             users: '/api/users',
             auth: '/api/auth',
             category: '/api/category',
+            products: '/api/products',
             receipt: '/api/receipt',
         };
         this.app = (0, express_1.default)();
@@ -50,6 +51,7 @@ class Server {
         this.app.use(this.apiPaths.users, require('../routes/user'));
         this.app.use(this.apiPaths.auth, require('../routes/auth'));
         this.app.use(this.apiPaths.category, require('../routes/category'));
+        this.app.use(this.apiPaths.products, require('../routes/products'));
         this.app.use(this.apiPaths.receipt, require('../routes/receipt'));
     }
     listen() {

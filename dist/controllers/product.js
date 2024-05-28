@@ -24,8 +24,8 @@ exports.deleteProduct = exports.patchProduct = exports.postProduct = exports.get
 const product_1 = require("../models/product");
 const category_1 = require("../models/category");
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const query = { aviable: true };
-    const products = Promise.all([
+    const query = { available: true };
+    const products = yield Promise.all([
         product_1.Product.countDocuments(query),
         product_1.Product.find(query),
     ]);
