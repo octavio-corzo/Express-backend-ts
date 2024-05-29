@@ -8,7 +8,7 @@ interface CategoryRequest extends Request {
         user: string;
         products: string[];
     }
-}
+};
 
 export const getCategories = async (req: Request, res: Response): Promise<Response> => {
     const query = {status: true}
@@ -27,13 +27,21 @@ export const getCategories = async (req: Request, res: Response): Promise<Respon
 
 export const postCategory = async (req: CategoryRequest, res: Response): Promise<Response> => {
     const { name, user, products } = req.body;
-  
-    const total: number = products.length;
-  
-    const category = new Category({ name, user, products, total });
-  
+    
+    let totalProducts: number = 0;
+
+    if (products) {
+        totalProducts = products.length;
+    }
+
+    const category = new Category({ name, user, products, totalProducts });
+
+    if(!products || !req.body.products){
+        totalProducts = 0;
+    }
+
     await category.save();
-  
+    
     return res.json({
       msg: 'PostCategory',
       category,
@@ -63,4 +71,4 @@ export const deleteCategory = async (req: Request, res: Response):Promise<Respon
         msg: 'deleteCategory',
         category
     });
-}
+};

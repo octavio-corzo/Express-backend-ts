@@ -19,7 +19,11 @@ const CategorySchema = new mongoose_1.Schema({
     products: [{
             type: String,
             ref: 'Product',
-            required: true
-        }]
+            required: true,
+        }],
+    totalProducts: {
+        type: Number,
+        default: 0
+    },
 });
 exports.Category = (0, mongoose_1.model)('Category', CategorySchema);

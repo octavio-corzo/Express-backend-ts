@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ShoppingCart = void 0;
 const mongoose_1 = require("mongoose");
 const ShoppingCartSchema = new mongoose_1.Schema({
     cart: {
@@ -25,4 +26,4 @@ const ShoppingCartSchema = new mongoose_1.Schema({
         default: 0
     },
 });
-module.exports = (0, mongoose_1.model)('ShoppingCart', ShoppingCartSchema);
+exports.ShoppingCart = (0, mongoose_1.model)('ShoppingCart', ShoppingCartSchema);

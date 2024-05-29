@@ -12,7 +12,7 @@ router.get('/', [
 router.post('/', [  
     check('name', 'Product name is required').isEmpty(),
     check('price', 'Product price is required').isEmpty(),
-    check('category', 'Product Category is required').isEmpty(),
+    
 ], postProduct);
 
 router.patch('/', [

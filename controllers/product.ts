@@ -17,7 +17,6 @@ export const getProducts = async (req: Request, res: Response): Promise<Response
     });
 };
 
-
 export const postProduct = async(req: Request, res: Response):Promise<Response> => {
     const {
         name, 
@@ -69,4 +68,4 @@ export const deleteProduct = async (req: Request, res: Response): Promise<Respon
         msg: 'deleteProduct',
         category
     });
-}
+};

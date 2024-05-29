@@ -10,10 +10,10 @@ router.get('/', [
 ], getCategories);
 
 router.post('/', [
-    validateJWT,
+    // validateJWT,
     check('name', 'The category name is required').notEmpty(),
     check('user', 'User creator of category is required').notEmpty(),
-    check('products', 'The products of category is required').notEmpty(),
+    check('products', 'No products provided').isEmpty(),
 ], postCategory);
 
 

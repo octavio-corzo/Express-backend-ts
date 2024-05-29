@@ -25,4 +25,4 @@ const ShoppingCartSchema = new Schema({
     },
 })
 
-module.exports = model('ShoppingCart', ShoppingCartSchema);
+export const ShoppingCart = model('ShoppingCart', ShoppingCartSchema);

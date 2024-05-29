@@ -10,7 +10,6 @@ router.get('/', [
 router.post('/', [
     (0, express_validator_1.check)('name', 'Product name is required').isEmpty(),
     (0, express_validator_1.check)('price', 'Product price is required').isEmpty(),
-    (0, express_validator_1.check)('category', 'Product Category is required').isEmpty(),
 ], product_1.postProduct);
 router.patch('/', [], product_1.patchProduct);
 module.exports = router;

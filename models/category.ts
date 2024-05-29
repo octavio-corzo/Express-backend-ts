@@ -18,8 +18,12 @@ const CategorySchema = new Schema({
     products: [{
         type: String,
         ref: 'Product',
-        required: true
-    }]
+        required: true,
+    }],
+    totalProducts: {
+        type: Number,
+        default: 0
+    },
 });
 
 export const Category = model('Category', CategorySchema);

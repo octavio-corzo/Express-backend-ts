@@ -12,7 +12,7 @@ const ProductSchema = new Schema({
     category: {
         type: Schema.Types.ObjectId,
         ref: 'Category',
-        required: true
+        required: false
     },
     description: {
         type: String
@@ -23,7 +23,7 @@ const ProductSchema = new Schema({
     },
     img: {
         type: String
-    }
+    },
 });
 
 

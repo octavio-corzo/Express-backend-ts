@@ -22,6 +22,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteCategory = exports.patchCategory = exports.postCategory = exports.getCategories = void 0;
 const category_1 = require("../models/category");
+;
 const getCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = { status: true };
     const categories = yield Promise.all([
@@ -36,8 +37,14 @@ const getCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.getCategories = getCategories;
 const postCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, user, products } = req.body;
-    const total = products.length;
-    const category = new category_1.Category({ name, user, products, total });
+    let totalProducts = 0;
+    if (products) {
+        totalProducts = products.length;
+    }
+    const category = new category_1.Category({ name, user, products, totalProducts });
+    if (!products || !req.body.products) {
+        totalProducts = 0;
+    }
     yield category.save();
     return res.json({
         msg: 'PostCategory',

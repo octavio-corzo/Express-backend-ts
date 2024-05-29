@@ -10,7 +10,7 @@ router.get('/', [
 ],getReceipts);
 
 router.post('/', [
-    validateJWT,
+    // validateJWT,
     check('name', 'receipt name is required').isEmpty(),
     check('admin', 'receipt admins is required').isEmpty(),
     check('client', 'receipt client is required').isEmpty(),
