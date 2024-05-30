@@ -7,7 +7,6 @@ export const getUsers = async (req: Request, res: Response): Promise<Response> =
     const query = { status: true };
 
     const users = await Promise.all([
-        User.countDocuments(query),
         User.find(query)
     ]);
 

@@ -26,7 +26,6 @@ const category_1 = require("../models/category");
 const getCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = { status: true };
     const categories = yield Promise.all([
-        category_1.Category.countDocuments(query),
         category_1.Category.find(query)
     ]);
     return res.json({

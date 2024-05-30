@@ -7,7 +7,6 @@ export const getProducts = async (req: Request, res: Response): Promise<Response
     const query = {available: true};
 
     const products = await Promise.all([
-        Product.countDocuments(query),
         Product.find(query),
     ]);
 

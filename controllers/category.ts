@@ -14,7 +14,6 @@ export const getCategories = async (req: Request, res: Response): Promise<Respon
     const query = {status: true}
 
     const categories = await Promise.all([
-        Category.countDocuments(query),
         Category.find(query)
     ]);
 

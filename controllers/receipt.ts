@@ -5,7 +5,6 @@ export const getReceipts = async (req: Request, res: Response): Promise<Response
     const query = {status: true};
 
     const receipts = await Promise.all([
-        Receipt.countDocuments(query),
         Receipt.find(query)
     ]) ;
 

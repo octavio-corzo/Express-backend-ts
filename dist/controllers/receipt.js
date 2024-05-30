@@ -25,7 +25,6 @@ const receipt_1 = require("../models/receipt ");
 const getReceipts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = { status: true };
     const receipts = yield Promise.all([
-        receipt_1.Receipt.countDocuments(query),
         receipt_1.Receipt.find(query)
     ]);
     return res.json({
